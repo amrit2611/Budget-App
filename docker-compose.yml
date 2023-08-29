@@ -1,0 +1,13 @@
+version: "3"
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: budget_app
+      POSTGRES_PASSWORD: budget_password
+      POSTGRES_DB: budget_app_db
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
