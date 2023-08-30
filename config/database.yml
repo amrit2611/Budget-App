@@ -20,16 +20,22 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: db
-  username: budget_app
-  password: budget_password
-  database: budget_app_db
+  host: localhost
+  username: myuser
+  password: mypass
 
 
 
 development:
+  adapter: postgresql
+  encoding: unicode
+  database: budgy_development2
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: myuser
+  password: mypass
+  host: localhost
+  port: 5432
   <<: *default
-  database: Budgy_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
