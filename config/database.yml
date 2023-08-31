@@ -20,7 +20,7 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: localhost
+  host: db
   username: myuser
   password: mypass
 
@@ -33,7 +33,7 @@ development:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: myuser
   password: mypass
-  host: localhost
+  host: db
   port: 5432
   <<: *default
 
@@ -93,6 +93,6 @@ test:
 #
 production:
   <<: *default
-  database: Budgy_production
+  database: budgy_production
   username: Budgy
   password: <%= ENV["Budgy_DATABASE_PASSWORD"] %>

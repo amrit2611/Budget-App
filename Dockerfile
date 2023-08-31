@@ -1,23 +1,17 @@
 FROM ruby:latest
 
-# Set environment variables for Rails
-ENV RAILS_ENV production
-ENV RACK_ENV production
-
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the Gemfile and Gemfile.lock into the container
-COPY Gemfile Gemfile.lock /app/
+RUN apt-get update && apt-get install -y nodejs postgresql-client
 
-# Install dependencies
-RUN gem install bundler:2.2.29 && bundle install --jobs 20 --retry 5
+RUN gem install bundler
 
-# Copy the application code into the container
-COPY . /app
+COPY Gemfile Gemfile.lock ./
 
-# Expose port 3000
+RUN bundle install
+
+COPY . .
+
 EXPOSE 3000
 
-# Start the Rails server
 CMD ["rails", "server", "-b", "0.0.0.0"]
